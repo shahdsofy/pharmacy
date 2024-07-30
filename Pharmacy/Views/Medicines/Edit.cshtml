@@ -1,0 +1,98 @@
+﻿@model Pharmacy.Models.Medicine
+
+@* @{
+    ViewData["Title"] = "Edit";
+} *@
+
+<h1 class="text-center">Edit Medicine</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="MedicineName" class="control-label"></label>
+                <input asp-for="MedicineName" class="form-control" />
+                <span asp-validation-for="MedicineName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <label asp-for="CategoryId" class="form-label"></label>
+            <select class="form-control"
+                    asp-for="CategoryId"
+                    asp-items="@(new SelectList(ViewBag.AllCategories,"Id", "Description"))">
+                <option selected disabled value="0">Select a Category...</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+            <div class="form-group">
+                <label asp-for="QuantityInStock" class="control-label"></label>
+                <input asp-for="QuantityInStock" class="form-control" />
+                <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpirationDate" class="control-label"></label>
+                <input asp-for="ExpirationDate" class="form-control" />
+                <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Manufacturer" class="control-label"></label>
+                <input asp-for="Manufacturer" class="form-control" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrescriptionRequirements" class="control-label"></label>
+                <input asp-for="PrescriptionRequirements" class="form-control" />
+                <span asp-validation-for="PrescriptionRequirements" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Barcode" class="control-label"></label>
+                <input asp-for="Barcode" class="form-control" />
+                <span asp-validation-for="Barcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StorageConditions" class="control-label"></label>
+                <input asp-for="StorageConditions" class="form-control" />
+                <span asp-validation-for="StorageConditions" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div>
+                <label asp-for="ImageFile" class="form-label"></label>
+                <input type="file" name="imageFile" id="imageFile"
+                       accept=".png,.jpg,.jpeg" class="form-control" />
+            </div>
+
+
+            <div class="form-group row mt-2 ">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+
+            <div class="row mt-2">
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

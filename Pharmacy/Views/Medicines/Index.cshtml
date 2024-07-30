@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Pharmacy.Models.Medicine>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="background-color:beige; color:black; text-align:center">Medicine</h1>
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Medicine</a>
+</p>
+
+
+<form method="get" asp-controller="Medicines" asp-action="Index" class="col-3">
+    <div class="mt-3 input-group ">
+        <input name="search" value="@ViewBag.SearchText" class="form-control" />
+        <button type="submit" class="input-group-append btn btn-secondary"><i class="bi bi-search"></i>Search</button>
+    </div>
+</form>
+<hr />
+
+<table class="table table-bordered table-striped text-center table-hover caption-top">
+    <caption class="text-center">Medicine</caption>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageFile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                </td>
+
+               
+                <td>
+                    <img src=" @Html.DisplayFor(modelItem => item.ImagePath)" />
+
+                </td>
+                <td>
+                    <a asp-controller="Medicines" asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none"
+                       class="btn btn-success"
+                       title="Details">
+                        <i class="bi bi-list-ul"></i>
+                    </a>
+
+                    <a asp-controller="Medicines" asp-action="Edit" asp-route-id="@item.Id" style="text-decoration:none"
+                       class="btn btn-primary" title="Edit">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+
+                    <a asp-controller="Medicines" asp-action="Delete" asp-route-id="@item.Id" style="text-decoration:none;"
+                       c class="btn btn-danger"
+                       title="Delete">
+                        <i class="bi bi-trash"></i>
+
+                    </a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@foreach (var item in Model)
+{
+    <div class="card text-center mb-3" style="display:inline-block; width:18rem;">
+        <div class="card-header">@item.MedicineName</div>
+        <div class="card-body">
+            <h5 class="card-title">@item.Price</h5>
+            <td><img src="@item.ImagePath" height="100px" /></td>
+            <p class="card-text">@item.QuantityInStock</p>
+        </div>
+        <div class="card-footer">@item.ExpirationDate</div>
+    </div>
+}
