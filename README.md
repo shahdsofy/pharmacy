@@ -1,0 +1,1 @@
+In Pharmacy project, pharmacist can make crud operations and search about medicine also can make crud operation on category of the medicine. pharmacist can also create new category , edit, delete , see details about category
